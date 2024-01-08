@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    /* Tooltip styling */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      display: none;
+      width: 120px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -60px;
+    }
+
+    .tooltip:hover .tooltiptext {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Buttons with tooltip text -->
+<div class="tooltip">
+  <button class="copyButton" data-tooltip="Text to be copied 1">Click me 1</button>
+</div>
+
+<div class="tooltip">
+  <button class="copyButton" data-tooltip="Text to be copied 2">Click me 2</button>
+</div>
+
+<div class="tooltip">
+  <button class="copyButton" data-tooltip="Text to be copied 3">Click me 3</button>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $(".copyButton").click(function() {
+      // Find the associated tooltip text using the data-tooltip attribute
+      var tooltipText = $(this).data("tooltip");
+
+      // Copy the text to the clipboard
+      navigator.clipboard.writeText(tooltipText)
+        .then(function() {
+          alert("Text copied: " + tooltipText);
+        })
+        .catch(function(err) {
+          console.error('Unable to copy text', err);
+        });
+    });
+  });
+</script>
+
+</body>
+</html>
